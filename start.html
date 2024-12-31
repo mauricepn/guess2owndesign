@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Badeen+Display&family=Bebas+Neue&family=Parkinsans:wght@300..800&family=Press+Start+2P&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Wet+Paint&display=swap"
+      rel="stylesheet" />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-position: center;
+      background-size: cover;
+
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    section {
+      padding: 0 200px;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    nav {
+      background-color: #5e686d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 90px;
+    }
+    .logo img {
+      height: 90px;
+    }
+    ul {
+      display: flex;
+      list-style: none;
+    }
+    ul li {
+      margin-left: 90px;
+    }
+    li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    li:hover {
+        background-color: #534a66;
+        
+    }
+    li:active {
+        background-color: #b6a6da;
+        
+    }
+    h1 {
+      color: #fef605;
+      font-family: "Rubik Wet Paint", serif;
+      font-weight: 400;
+      text-align: center;
+      margin-top: 200px;
+      font-size: 3em;
+      position: relative;
+      bottom: 60px;
+      position: relative;
+      bottom: 150px;
+    }
+    .rule {
+      background-color: #585921;
+      display: flex;
+      justify-content: center;
+      border-radius: 10px;
+      height: 50px;
+      width: 200px;
+    }
+    p {
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+
+      position: relative;
+    }
+
+    .btn {
+      background-color: #ab234c;
+      position: relative;
+      border: 2px solid;
+
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .btn:hover {
+      background-color: #fa6391;
+    }
+    .btn:active {
+      background-color: #fc80c4;
+    }
+    .start {
+      font-family: "Press Start 2P", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 2em;
+      font-weight: bold;
+      color: rgb(183, 243, 31);
+
+      cursor: pointer;
+    }
+    .enter {
+      font-size: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      bottom: 100px;
+      min-width: 1100px;
+    }
+
+    .ingiza {
+      color: #4b03e6;
+      height: 70px;
+      width: 150px;
+      padding: 20px;
+      font-size: 4em;
+
+      border: 2px solid rgb(154, 5, 5);
+      border-radius: 10px;
+    }
+    .secret {
+      width: 100px;
+      padding: 20px;
+      background-color: #8d072f;
+      color: white;
+      border: 3px solid white;
+
+      display: flex;
+      justify-content: center;
+      font-size: 2em;
+      font-weight: bolder;
+      border-radius: 10px;
+    }
+    .scores {
+      background-color: #1f0a4d;
+      width: 300px;
+      height: 120px;
+      border-radius: 10px;
+      border: 2px solid white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      padding: 30px;
+      gap: 30px;
+      position: absolute;
+      top: 95%;
+      left: 50%;
+      transform: translate(-50%);
+    }
+    .message {
+      background-color: brown;
+      color: rgb(255, 255, 255);
+      border: 2px solid;
+      border-radius: 10px;
+      height: 40px;
+      padding: 10px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .background-clip {
+      position: absolute;
+      right: 0;
+      left: 0;
+      z-index: -1;
+    }
+   .score-result {
+    margin-left: 30px;
+    font-size: 1.5em;
+    color: yellow;
+    }
+    .highscore-result {
+        margin-left: 30px;
+        font-size: 1.5em;
+        color: rgb(34, 255, 0);
+    }
+    .restart {
+        color: white;
+        font-size: 2em;
+        font-weight: bolder;
+        padding: 5px;
+        width: 4em;
+        position: relative;
+        right: 150px;
+        background-color: rgb(157, 103, 4);
+        border: 4px solid rgb(116, 33, 115);
+        border-radius: 10px;
+        box-shadow: 10px 10px 12px;
+        cursor: pointer;
+    }
+    .restart:hover {
+        background-color: rgb(210, 160, 69);
+    }
+    .restart:active {
+        background-color: rgb(249, 75, 240);
+    }
+
+    @media (min-aspect-ratio: 16/9) {
+      .background-clip {
+        width: 100%;
+        height: auto;
+      }
+    }
+    @media (max-aspect-ratio: 16/9) {
+      .background-clip {
+        width: auto;
+        height: 100%;
+      }
+    }
+    @media (max-width : 638px) {
+        h1{
+            font-size: 2em;
+        }
+        .restart {
+          position: relative;
+          left: 30px;
+        }
+        
+    }
+  </style>
+  <body>
+    <video autoplay loop muted plays-inline class="background-clip">
+      <source src="./1109696_Reflection_Glitter_1920x1080.mp4" type="video/mp4"></video>
+    </video>
+    <nav>
+      <div class="logo">
+        <a href="index.html"
+          ><img src="./MP_Cods Logo.png" alt="Website logo"
+        /></a>
+      </div>
+      <ul>
+        <button class="restart">Reset</button>
+        <li style="padding: 10px; background-color: rgb(58, 16, 46); border-radius: 10px; display: flex; justify-content: center; align-items: center;"><a href="help.html">Help</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h1>GUESS MY SECRET NUMBER</h1>
+
+      <div class="enter">
+        <div class="rule">
+          <p>choose between 1 to 20</p>
+        </div>
+        <div class="secret">?</div>
+        <input type="number" class="ingiza" />
+        <button class="btn start">CHECK</button>
+        <div class="message">START GUESSING ...</div>
+      </div>
+
+      <div class="scores">
+        <p class="score">SCORE : <span class="score-result">20</span></p>
+        <p class="score">HIGH SCORE : <span class="highscore-result">0</span></p>
+      </div>
+    </section>
+
+    <script>
+      const cheki = document.querySelector(".start");
+      let randomNumber = Math.floor(Math.random() * 20) + 1;
+
+      const mwili = document.querySelector(".background-clip");
+      console.log(` --- THE SECRET NUMBER IS : [ ${randomNumber} ] ----`);
+      const ujumbe = function (message) {
+        document.querySelector(".message").textContent = message;
+      };
+      let score = 20;
+      let highscore = 0;
+
+      cheki.addEventListener("click", function () {
+        const ingizia = Number(document.querySelector(".ingiza").value);
+        console.log(
+          `------ the correct answer entered is : [ ${ingizia} ] -----`
+        );
+
+        if (!ingizia) {
+          ujumbe("⛔️ PLEASE ENTER A NUMBER");
+        } else if (ingizia === randomNumber) {
+          mwili.style.background = "url(5073414.jpg)";
+          const secretNumber = (document.querySelector(".secret").textContent =
+            randomNumber);
+            document.querySelector(".message").style.fontSize = '2em';
+            document.querySelector(".message").style.backgroundColor = 'green';
+
+          ujumbe("🎉 THAT IS THE RIGHT ANSWER ✅");
+
+          if (score > highscore){
+            highscore = score;
+            document.querySelector('.highscore-result').textContent=highscore;
+            document.querySelector('.highscore-result').style.fontSize = '2em';
+          }
+        } else if (ingizia !== randomNumber) {
+            if(score >1) {
+                ;
+            ujumbe(
+            ingizia > randomNumber
+              ? "📈 THE NUMBER IS HIGH!  TRY AGAIN 🫢"
+              : "📉 THE NUMBER IS LOW!  TRY AGAIN 🫢"
+          );
+          
+          score--;
+          document.querySelector('.score-result').textContent=score;
+        }
+      else {
+            ujumbe("💥 YOU HAVE LOST THE GAME! 😬");
+            document.querySelector(".score-result").textContent = 0;
+            document.querySelector(".message").style.fontSize = '2em';
+            document.querySelector(".message").style.color = 'red';
+            document.querySelector(".message").style.backgroundColor = 'white';
+            
+        }
+    } 
+          
+      });
+
+      document.addEventListener('keydown', e=>{
+        if(e.key === 'Enter'){
+          console.log('----- ENTER HAS BEEN PRESSED ----- ')
+          const ingizia = Number(document.querySelector(".ingiza").value);
+
+          function logIf(condition, message){
+            if (condition){
+              console.log(message);
+            }else {
+              console.log('---- INCORRECT INPUT : ' + ingizia + "----- ⛔️");
+            }
+          }
+          logIf(ingizia===randomNumber, "----- INPUT VALUE IS: " + ingizia + ' CORRECT ✅',  + " ---- ")
+       
+
+        if (!ingizia) {
+          ujumbe("⛔️ PLEASE ENTER A NUMBER");
+        } else if (ingizia === randomNumber) {
+          mwili.style.background = "url(5073414.jpg)";
+          const secretNumber = (document.querySelector(".secret").textContent =
+            randomNumber);
+            document.querySelector(".message").style.fontSize = '2em';
+            document.querySelector(".message").style.backgroundColor = 'green';
+
+          ujumbe("🎉 THAT IS THE RIGHT ANSWER ✅");
+
+          if (score > highscore){
+            highscore = score;
+            document.querySelector('.highscore-result').textContent=highscore;
+            document.querySelector('.highscore-result').style.fontSize = '2em';
+          }
+        } else if (ingizia !== randomNumber) {
+
+        
+
+            if(score >1) {
+                ;
+            ujumbe(
+            ingizia > randomNumber
+              ? "📈 THE NUMBER IS HIGH!  TRY AGAIN 🫢"
+              : "📉 THE NUMBER IS LOW!  TRY AGAIN 🫢"
+          );
+          
+          score--;
+          document.querySelector('.score-result').textContent=score;
+        }
+      else {
+            ujumbe("💥 YOU HAVE LOST THE GAME! 😬");
+            document.querySelector(".score-result").textContent = 0;
+            document.querySelector(".message").style.fontSize = '2em';
+            document.querySelector(".message").style.color = 'red';
+            document.querySelector(".message").style.backgroundColor = 'white';
+            
+        }
+    } 
+        }
+      })
+
+      const again = document.querySelector('.restart');
+
+
+      again.addEventListener('click', function(){
+        console.log("---- GAME HAS RESET -----");
+
+        score = 20;
+        randomNumber = Math.floor(Math.random()*20)+1;
+
+        ujumbe('START GUESSING ...');
+        document.querySelector('.score-result').textContent = score;
+  document.querySelector('.secret').textContent = '?';
+  document.querySelector('.ingiza').value = '';
+
+
+      })
+    </script>
+  </body>
+</html>
